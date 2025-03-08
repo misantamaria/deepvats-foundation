@@ -9,6 +9,7 @@ ratio_text <- function(id){
   textInput("pp_ratio", "Set ratio:", value = 1)
 }
 path_line_selector <- function(id){
+  print(paste0("---- |||| path_line_size ||| ---", DEFAULT_VALUES$path_line_size))
   sliderInput(
     "path_line_size", 
     label = "path_line_size", 
@@ -17,6 +18,7 @@ path_line_selector <- function(id){
   )
 }
 path_alpha_selector <- function(id){
+  print(paste0("---- |||| path_alpha ||| ---", DEFAULT_VALUES$path_alpha))
   sliderInput(
     "path_alpha", 
     label = "path_alpha",
@@ -30,13 +32,14 @@ point_alpha_selector <- function(id){
   slider <- sliderInput(
     "point_alpha", 
     label = "point_alpha",
-    value = DEFAULT_VALUES$point_alpha, 
+    value = as.numeric(DEFAULT_VALUES$point_alpha), 
     min=0, max=1, step = 0.01
   )
   print(paste0("---- |||| point_alpha ||| ---", DEFAULT_VALUES$point_alpha))
   slider
 }
 point_size_selector <- function(id) {
+  print(paste0("---- |||| point_size_selector ||| ---", DEFAULT_VALUES$path_line_size))
   sliderInput(
     "point_size", 
     label = "point_size",
@@ -115,7 +118,9 @@ original_data_plot_controllers <- function(id){
       circle = FALSE, status = "primary", size = "xs",
       icon = shiny::icon("gear"), width = "300px",
       tooltip = tooltipOptions(title = "Configure the TS appearance"),
-      inputId = "ts_config"
+      inputId = "ts_config",
+      hr(),
+      checkboxInput("time_all", "Show full time", value = TRUE)
     )
   )
 }

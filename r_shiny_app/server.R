@@ -325,21 +325,29 @@ shinyServer(function(input, output, session) {
             })
         }
     )
+
+
+    format_sizes <- function(proposed_lens){
+        paste0("Proposed window sizes: [", paste(proposed_lens, collapse = ', '), "]")
+    }
+    
   
     propose_wlen <- function(data, indexname, ncol = 1){
+        req(length(data) > 0)
         log_print("--> propose sizes ", debug_group = 'debug')
         data    <- data %>% select(-all_of(indexname))
-        log_print(paste0("propose sizes || ", paste(colnames(data), collapse = ', ')), debug_group = 'debug')
-        #index   <- as.integer(seq_len(nrow(data)))
-        if (ncol(data) > 1){ data <- data[[min(length(data), ncol)]]}
+        log_print(paste0("propose sizes || columns ", paste(colnames(data), collapse = ', ')), debug_group = 'debug')
+        log_print(paste0("propose sizes || dim ", paste(dim(data), collapse = ', ')), debug_group = 'debug')
+        log_print(paste0("propose sizes || Feature 1 ", paste(length(data[[1]]), collapse = ', ')), debug_group = 'debug')
+        # TODO: Hacer multivariable. Afecta a otras partes del código, no es rápido.
         sizes <- utils$find_dominant_window_sizes_list(
-                X               = np$array(data[[1]]),
-                nsizes          = 5,
-                offset          = 0.05,
-                verbose         = as.integer(0),
-                min_distance    = 5
-            )
-        proposed_wlen( sizes )
+            X            = np$array(data[[1]]),
+            nsizes       = 5,
+            offset       = 0.05,
+            verbose      = as.integer(0),
+            min_distance = 5
+        )
+        proposed_wlen(sizes)      
         log_print("propose sizes --> ", debug_group = 'debug')
         return(sizes)
     }
@@ -1676,8 +1684,16 @@ shinyServer(function(input, output, session) {
         log_to_file(paste0("Fine tune eval results post-tune: ", eval_results_post, "s" ), TRUE, LOG_PATH)
         update_play_fine_tune_button()
         allow_update_embs(FALSE)
-        enc(NULL)
+        embs_pre <- embs() ### Eliminar. Puesto para depurar
+        log_to_file(embs_pre, TRUE, "embs_pre")
+
+        ## ---- Revisando reactividad prjs ----
+        prjs(NULL)
+        embs(NULL)
+        embs_complete_cases(NULL)
         enable_disable_embs()
+        ## ----                            ----
+
         removeModal()
     })
   
@@ -1766,6 +1782,7 @@ shinyServer(function(input, output, session) {
         log_print("--> prjs_pca_umap", debug_group = 'main')
         on.exit({log_print("prjs_pca_umap -->", debug_group = 'main')})
         embs <- embs_complete_cases()
+        log_to_file(embs, TRUE, "embs_post" ) ###Eliminar, puesto para depurar
         res <- dvats$get_PCA_UMAP_prjs(
             input_data  = embs, 
             cpu         = cpu_flag(), 
@@ -1965,7 +1982,10 @@ shinyServer(function(input, output, session) {
             flush.console()
             log_print(
                 paste0(
-                    "Reactive tsdf | Execution time: ", t_1 - t_0, " seconds | df ~ ", dim(df),
+                    "Reactive tsdf | Execution time: ", 
+                    t_1 - t_0, 
+                    " seconds | df ~ ", 
+                    paste(dim(df), collapse=', '),
                     debug_group = 'time'
                 )
             )
@@ -2450,8 +2470,16 @@ shinyServer(function(input, output, session) {
             log_print(paste0("ts_plot || Reduced ", reduced_window_list), debug_group = 'tmi')
             log_print(paste0("ts_plot || sd_id ", start_indices), debug_group = 'tmi')
             log_print(paste0("ts_plot || ed_id ", end_indices), debug_group = 'tmi')
-
+        
             if (!is.na(start_indices) && !is.na(end_indices)) {
+                if (input$time_all){
+                    log_print(paste0("start_indices before: ", start_indices))
+                    log_print(paste0("end_indices before: ", end_indices))
+                    start_indices = 1
+                    end_indices = nrow(tsdf())
+                    log_print(paste0("start_indices after: ", start_indices))
+                    log_print(paste0("end_indices after: ", end_indices))
+                }
                 view_size = end_indices-start_indices+1
                 max_size = 10000
 
@@ -2747,7 +2775,9 @@ shinyServer(function(input, output, session) {
         )
         # Prepare the column highlight to color data
         if (!is.null(input$ts_plot_dygraph_click)) {
-            selected_ts_idx = which(ts_plot()$x$data[[1]] == input$ts_plot_dygraph_click$x_closest_point)
+            selected_ts_idx = which(
+                ts_plot()$x$data[[1]] == input$ts_plot_dygraph_click$x_closest_point
+            )
             projections_idxs = tsidxs_per_embedding_idx() %>% map_lgl(~ selected_ts_idx %in% .)
             prjs_$highlight = projections_idxs
         } else {
@@ -3013,7 +3043,8 @@ shinyServer(function(input, output, session) {
     })
 
     output$proposed_wlen <- renderText({
-        paste0("Proposed window sizes: [", paste(proposed_wlen(), collapse = ', '), "]")
+        format_sizes(proposed_wlen())
+        #paste0("Proposed window sizes: [", paste(proposed_wlen(), collapse = ', '), "]")
     })
 
     output$log_path <- renderText({

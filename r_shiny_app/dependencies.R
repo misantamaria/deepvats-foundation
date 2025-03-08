@@ -66,6 +66,7 @@ dvats         = reticulate::import_from_path("dvats.all", path=paste0(Sys.getenv
 mplots        = reticulate::import_from_path("dvats.mplots", path=paste0(Sys.getenv("HOME")))
 utils         = reticulate::import_from_path("dvats.utils", path = paste0(Sys.getenv("HOME")))
 dvats_encoder = reticulate::import_from_path("dvats.encoder", path = paste0(Sys.getenv("HOME")))
+tsmetrics     = reticulate::import("tslearn.metrics")
 #print("--> py_config ")
 #print(reticulate::py_config())
 #print("py_config -->")

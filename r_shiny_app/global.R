@@ -24,7 +24,7 @@ DEFAULT_VALUES = list(
   min_samples_hdbscan               = as.integer(15),
   cluster_selection_epsilon_hdbscan = 0.08,
   path_line_size                    = 0.5, # 0.08,
-  path_alpha                        = 0.25,
+  path_alpha                        = 0.5, # 0.25,
   point_alpha                       = 1, 
   point_size                        = 1.25 
 )
