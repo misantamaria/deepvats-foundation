@@ -1,0 +1,65 @@
+[33me8a6644[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop-macu-feature-fine_tune-Moment-mixed_windows-FixLargeFiles[m[33m, [m[1;32mdevelop-macu-feature-fine_tune-Moment-mixed_windows_bkup[m[33m, [m[1;32mdevelop-macu-feature-fine_tune-Moment-mixed_windows[m[33m, [m[1;32mbackup-recovery[m[33m, [m[1;32mbackup-before-file-removal[m[33m)[m Added DTW as option for moment fine-tune
+[33m5defedb[m Added soft-DTW for loss
+[33m710c903[m quitados ficheros demasiados grandes
+[33mce9641d[m corregida gestión multivariable propose_wlen
+[33m783b904[m Corregido cómputo para flag 'mantener serie completa sin hacer zoom'
+[33m88eb2d9[m[33m ([m[1;31morigin/develop-macu-feature-fine_tune-Moment-mixed_windows[m[33m)[m arreglada reactividad cuando se fine-tunea para forzar el cambio del espcaio de embedings
+[33m15645f4[m Revisados los maxiomos originales de pca tsne random_state max
+[33m1b43178[m corregida reactividad de PCA_UMAP
+[33m8d7f9e9[m Modificadas estéticas para asegurar reproducibilidad de las imagenes
+[33m956d8a8[m Corregido faltaba parámetro n_components en umap_kwargs
+[33m614eff0[m corregido uso de optimizer con moment
+[33m8628bb4[m Version con todo en _seet_seed_ asegurando que se generen las ventanas al momento de crear el dataset en _set_enc_input
+[33ma56794e[m typo
+[33mdd9f885[m cazado posible incompatibilidad de moment con ventanas menores a 8
+[33m978e131[m asegurada inicializacion de loss en fine_tune_moment_eval_step_
+[33me6d3e00[m Asegurada inicializacion de output en moment_safe_forward_pass
+[33m658a5f0[m revisand a neracion de ventanas con guardadodo
+[33m991fc3b[m Corregidas llamadas en windoweddataset
+[33md06854d[m corregido sacar siempre mismos batches al usar generate_batches en WindowedDataset
+[33mbfab3b1[m Restore cuda added
+[33m2856e39[m corregido typo en def _set_seed
+[33m4bba33d[m version actual lunes
+[33m8e9ac8a[m ensure unique window sizes values
+[33md40f836[m modificado momento de guardar primer best_loss y best_status. Añadido primer loss en los train_losses
+[33mc9937f7[m corregida errata en utils.WindowedDataset.generate_batches
+[33m32aeaa8[m añadida opción a admitir batches incompletos en utils.WindowedDataset
+[33m98718ff[m corregido registro de ventanas en el caso mix_windows.
+[33m72d754b[m Añadida línea para guardar window size en la version mix_window de fine_tune_moment_train
+[33m2a7a856[m mejorado fine_tune_moment_train_mix_windows para tratar de asegurar el guardado del mejor modelo y el guardado del mejor modelo en cpu
+[33m6c4a6a1[m añadido notebook generar modelos fundacionales para casos concretos
+[33m9f8e92e[m Comentado eval_pre a False para comprobar si el problema de los losses viene de comparar ventanas distintas
+[33mdb166eb[m modificado fine_tune_moment_train_ y class encoder para garantizar que no se reinicia el modelo entre ventana y ventana sino que se guarda el mejor de todo el entrenamiento
+[33m1670149[m typo
+[33mec2707a[m Corregido print_flush
+[33m21c2181[m Minor fixes
+[33m708b0fb[m corregido typo. Completado forzar uso de GPU
+[33m2eda9a9[m corregido tipo print_errorf
+[33mb79bdf0[m typo en self,mssg
+[33m9998995[m Añadido with torch.cuda.device(device) para tratar de forzar al uso de GPU
+[33m339ff16[m añadidas alternativas de e apertura de valuate.metrics  tras errores con el API de huggingFace
+[33m51ff54a[m Añadido ws (window size) a class Encoder para evitar problemas con el registro de casos en la construccion de los dataloaders
+[33ma7aae40[m corregido problema double en lugar de float al evaluar moment
+[33m2c2bebf[m typos corregidos
+[33ma7b584d[m incluidas en clase encoder las funciones de set_*_size set_*_dataset
+[33m2309952[m[33m ([m[1;31morigin/develop-macu-feature-fine_tune-Moment-saveBest[m[33m)[m añadido .py leyendo desde fichero para checkear los resultados durante la ejecucion
+[33m1c35412[m corregidas erratas best_epoch y rmse
+[33mfdf65de[m Arreglado masking de moment
+[33m52e8d51[m[33m ([m[1;31morigin/develop-macu-feature-fine_tune-Moment-clean_sure_eval_moment[m[33m, [m[1;32mdevelop-macu-feature-fine_tune-Moment-clean_sure_eval_moment[m[33m)[m sure_eval_moment corregida y modificada a Encoder.moment_safe_forward_pass
+[33m0df62d5[m better comments. Some cleaning
+[33m9bb9320[m[33m ([m[1;31morigin/macu-paper-01_2024[m[33m, [m[1;31morigin/develop-macu-feature-fine_tune[m[33m, [m[1;32mmacu-paper-01_2024[m[33m)[m Clean
+[33m4548afe[m Fix build_moment_mask
+[33m0a4566b[m corregido enmascaramiento con tsai
+[33me0fb2ff[m revisado enmascarado con moment
+[33m1042c87[m Modificado para lanzar el experimento de los dias 24-25
+[33m6170c0f[m Añadido enmascaramiento en el proceso de evaluación
+[33m81a10e1[m modificado group_similar_sizes en un intento de conseguir que las ventanas se separen de verdad
+[33m2b2941f[m[33m ([m[1;32mdevelop-macu-feature-fine_tune-MOIRAI[m[33m)[m R | Corregido error en logs. Modificados parametros en fine-tuning
+[33m8d330d5[m Changuing fine tune to use class and mssgs too
+[33macdd3bb[m Arreglado docker de jupyter para asegurar correcta instalación de deepvats tras problemas con los imports
+[33m1662390[m version de shiny-server funcional sin usuario app
+[33m4e61848[m Revisado docker shiny & movido reactivo enc_ar <- eventReactive porque no lo encuentra en la versión shiny-server y falla al inicio la app
+[33mec8f307[m correjido error en print de projections_plot_comp
+[33me3c31bc[m docker R funciona
+[33m5717043[m Corregido error docker jupyter no encuentra moment. Revisando R
+[33m6880ff0[m merged docker-shiny

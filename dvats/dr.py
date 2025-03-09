@@ -185,17 +185,17 @@ def get_PCA_UMAP_prjs(
     return prjs
     
 
-# %% ../nbs/dr.ipynb 26
+# %% ../nbs/dr.ipynb 27
 from sklearn.metrics import silhouette_score
 def cluster_score(prjs, clusters_labels, verbose = 0):
     score = silhouette_score(prjs, clusters_labels)
     if verbose > 0:print("Silhouette_score:", score)
     return score
 
-# %% ../nbs/dr.ipynb 28
+# %% ../nbs/dr.ipynb 29
 import matplotlib.pyplot as plt
 
-# %% ../nbs/dr.ipynb 29
+# %% ../nbs/dr.ipynb 30
 def plot_projections(prjs, umap_params, fig_size = (25,25)):
     "Plot 2D projections thorugh a connected scatter plot"
     df_prjs = pd.DataFrame(prjs, columns = ['x1', 'x2'])
@@ -207,7 +207,7 @@ def plot_projections(prjs, umap_params, fig_size = (25,25)):
         umap_params['n_neighbors'],umap_params['min_dist']))
     return ax
 
-# %% ../nbs/dr.ipynb 30
+# %% ../nbs/dr.ipynb 31
 # Color cluster & lines out
 def plot_projections_clusters(prjs, clusters_labels, umap_params, fig_size = (25,25)):
     "Plot 2D projections thorugh a connected scatter plot"

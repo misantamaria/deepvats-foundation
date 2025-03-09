@@ -16,7 +16,7 @@ user_preferences:
     user: &wdb_user mi-santamaria
     project_name: &wdb_project deepvats    
     #version: &wdb_version '0' #Moment --- last even number
-    version: &wdb_version 'latest' #mvp
+    version: &wdb_version '2' #'latest' #mvp
     # 'online' if the model will be tested on future data, or 'offline' if not
     mode: &wdb_mode 'online'
     artifacts_path: &artifacts_path './data/wandb_artifacts'
@@ -28,10 +28,10 @@ user_preferences:
     freq: &freq '1W'
   artifact:
     # Alias of the artifact resulting of this run. null will create one automatically
-    #alias: &alias 'gtrends_kohls'
+    alias: &alias 'gtrends_kohls'
     #alias: &alias 'gtrends_kohls-detrended'
     #alias: &alias 'gtrends_kohls-denoised'
-    alias: &alias 'gtrends_khols-normalized_yearly'
+    #alias: &alias 'gtrends_khols-normalized_yearly'
     #algorithm: &alg "mvp"
     algorithm: &alg "zeroshot-moment-small-embedding"
     #algorithm: &alg "zeroshot-moirai-small"

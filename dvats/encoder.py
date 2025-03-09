@@ -2082,7 +2082,8 @@ def windowed_dataset(
     validation_percent              : float         = 0.3,
     training_percent                : float         = 1.0,
     cpu                             : bool          = False,
-    mssg                            : ut.Mssg       = ut.Mssg()
+    mssg                            : ut.Mssg       = ut.Mssg(),
+    batch_size                      : int           = 8
 ): 
     stride = 1 if stride is None else stride 
     n_window_sizes = 1 if n_window_sizes is None else n_window_sizes
@@ -2114,7 +2115,8 @@ def windowed_dataset(
             validation_percent  = validation_percent,
             training_percent    = training_percent,
             device              = "cpu" if cpu else torch.cuda.current_device(),
-            stride              = stride
+            stride              = stride, 
+            batch_size          = batch_size
         )
         # This line is just for avoiding problems with randomness, ensuring that the windows has already been generated
         dss_train = dss.num_batches('train')
@@ -2369,6 +2371,7 @@ def _set_enc_input(
         mssg.print_error(f"About to get the windows")
         enc_input, window_sizes = windowed_dataset(
             X                       = X,
+            batch_size              = batch_size,
             stride                  = stride,
             window_sizes            = window_sizes,
             n_window_sizes          = n_window_sizes,
@@ -2592,7 +2595,10 @@ def fine_tune_moment_compute_loss_check_sizes_(
     mssg.function = func
     return b
 
-# %% ../nbs/encoder.ipynb 68
+# %% ../nbs/encoder.ipynb 69
+from tslearn.metrics import SoftDTWLossPyTorch
+
+# %% ../nbs/encoder.ipynb 70
 def moment_compute_loss(
     self        : Encoder,
     batch, 
@@ -2639,6 +2645,12 @@ def moment_compute_loss(
     self.mssg.print(f"Mask: {mask}")
     observed_mask   = batch_masks * (1-mask)
     self.mssg.print(f"Observed mask: {observed_mask}")
+
+    if isinstance(self.optim.criterion, SoftDTWLossPyTorch):
+        recon_loss = recon_loss.unsqueeze(1)
+        recon_loss = torch.nn.functional.interpolate(recon_loss.unsqueeze(1), size=observed_mask.shape[-1], mode="linear").squeeze(1)
+        recon_loss = recon_loss.squeeze(1)
+        self.mssg.print(f"Reconstruction loss expanded to the original size: {recon_loss}")
     masked_loss     = observed_mask * recon_loss
     loss            = masked_loss.nansum() / (observed_mask.nansum() + 1e-7)
     self.mssg.print(f"Loss type: {type(loss)}")
@@ -2652,7 +2664,7 @@ def moment_compute_loss(
 
 Encoder.moment_compute_loss = moment_compute_loss
 
-# %% ../nbs/encoder.ipynb 69
+# %% ../nbs/encoder.ipynb 71
 def fine_tune_moment_eval_preprocess(
     self        : Encoder,
     predictions : List [ List [ float ]],
@@ -2695,7 +2707,7 @@ def fine_tune_moment_eval_preprocess(
 
 Encoder.fine_tune_moment_eval_preprocess = fine_tune_moment_eval_preprocess
 
-# %% ../nbs/encoder.ipynb 70
+# %% ../nbs/encoder.ipynb 72
 def get_mask_moment(
     batch, batch_masks, r, mssg
 ):
@@ -2782,7 +2794,7 @@ def get_mask_tsai(
     mssg.level -= 1
     return mask
 
-# %% ../nbs/encoder.ipynb 71
+# %% ../nbs/encoder.ipynb 73
 def check_batch_masks(
     batch,
     batch_masks,
@@ -2844,7 +2856,7 @@ def check_mask(
     mssg.level -= 1
     return mask
 
-# %% ../nbs/encoder.ipynb 72
+# %% ../nbs/encoder.ipynb 74
 def moment_set_masks(
     batch, 
     batch_masks,
@@ -2901,7 +2913,7 @@ def moment_set_masks(
     mssg.function = func
     return mask, bms
 
-# %% ../nbs/encoder.ipynb 73
+# %% ../nbs/encoder.ipynb 75
 def fine_tune_moment_eval_step_(
     self : Encoder, 
     batch,
@@ -2969,7 +2981,7 @@ def fine_tune_moment_eval_step_(
     return mse_metric, rmse_metric, mae_metric, smape_metric, loss
 Encoder.fine_tune_moment_eval_step_ = fine_tune_moment_eval_step_
 
-# %% ../nbs/encoder.ipynb 74
+# %% ../nbs/encoder.ipynb 76
 def fine_tune_moment_eval_(
     self      : Encoder,
     dl_eval   : DataLoader
@@ -3044,7 +3056,7 @@ def fine_tune_moment_eval_(
     return eval_results
 Encoder.fine_tune_moment_eval_ = fine_tune_moment_eval_
 
-# %% ../nbs/encoder.ipynb 75
+# %% ../nbs/encoder.ipynb 77
 def fine_tune_moment_eval_mix_windows_(
     self      : Encoder
 ):
@@ -3120,7 +3132,7 @@ def fine_tune_moment_eval_mix_windows_(
     return eval_results
 Encoder.fine_tune_moment_eval_mix_windows_ = fine_tune_moment_eval_mix_windows_
 
-# %% ../nbs/encoder.ipynb 76
+# %% ../nbs/encoder.ipynb 78
 def fine_tune_moment_train_loop_step_(
     self : Encoder,
     batch, 
@@ -3179,7 +3191,7 @@ def fine_tune_moment_train_loop_step_(
     return loss
 Encoder.fine_tune_moment_train_loop_step_ = fine_tune_moment_train_loop_step_
 
-# %% ../nbs/encoder.ipynb 77
+# %% ../nbs/encoder.ipynb 79
 def config_optim(
     self : Encoder,
     dl_train,
@@ -3197,7 +3209,7 @@ def config_optim(
         self.optim.lr.scheduler = None
 Encoder.config_optim = config_optim
 
-# %% ../nbs/encoder.ipynb 78
+# %% ../nbs/encoder.ipynb 80
 def fine_tune_moment_train_(
     self                            : Encoder,
     dl_train                        : DataLoader,
@@ -3286,7 +3298,7 @@ def fine_tune_moment_train_(
     return losses, self.model
 Encoder.fine_tune_moment_train_ = fine_tune_moment_train_
 
-# %% ../nbs/encoder.ipynb 79
+# %% ../nbs/encoder.ipynb 81
 #-- moving to set_train_and_eval_dataloaders
 def prepare_train_and_eval_dataloaders(
     X                   : Union [ List [ List [ List [ float ]]], List [ float ], pd.DataFrame ],
@@ -3338,7 +3350,7 @@ def prepare_train_and_eval_dataloaders(
     mssg.function = func
     return dl_eval, dl_train, ds_test, ds_train
 
-# %% ../nbs/encoder.ipynb 80
+# %% ../nbs/encoder.ipynb 82
 def fine_tune_moment_single_(
     self                : Encoder,
     eval_pre            : bool = False,
@@ -3455,7 +3467,7 @@ def fine_tune_moment_single_(
 
 Encoder.fine_tune_moment_single_ = fine_tune_moment_single_
 
-# %% ../nbs/encoder.ipynb 81
+# %% ../nbs/encoder.ipynb 83
 def fine_tune_moment_train_mix_windows_(
     self                : Encoder,
     use_moment_masks    : Optional[bool]    = True,
@@ -3569,7 +3581,7 @@ def fine_tune_moment_train_mix_windows_(
 
 Encoder.fine_tune_moment_train_mix_windows_ = fine_tune_moment_train_mix_windows_
 
-# %% ../nbs/encoder.ipynb 82
+# %% ../nbs/encoder.ipynb 84
 def fine_tune_moment_mix_windows(
     self                : Encoder,
     eval_pre            : bool = False,
@@ -3655,7 +3667,7 @@ def fine_tune_moment_mix_windows(
 
 Encoder.fine_tune_moment_mix_windows = fine_tune_moment_mix_windows
 
-# %% ../nbs/encoder.ipynb 83
+# %% ../nbs/encoder.ipynb 85
 def fine_tune_moment_(
     self                : Encoder, 
     eval_pre            : bool = False, 
@@ -3783,7 +3795,7 @@ def fine_tune_moment_(
 
 Encoder.fine_tune_moment_ = fine_tune_moment_
 
-# %% ../nbs/encoder.ipynb 85
+# %% ../nbs/encoder.ipynb 87
 def fit_fastai(
     self     : Encoder,
     dl_train : DataLoader,
@@ -3920,7 +3932,7 @@ def fit_fastai(
     self.mssg.level -= 1
 Encoder.fit_fastai = fit_fastai    
 
-# %% ../nbs/encoder.ipynb 86
+# %% ../nbs/encoder.ipynb 88
 def fine_tune_mvp_single_(
     self            : Encoder,
     eval_pre        : bool  = False,
@@ -4071,7 +4083,7 @@ def fine_tune_mvp_single_(
     return losses, eval_results_pre, eval_results_post, t_shot, t_eval_1, t_eval_2, self.model
 Encoder.fine_tune_mvp_single_ = fine_tune_mvp_single_
 
-# %% ../nbs/encoder.ipynb 87
+# %% ../nbs/encoder.ipynb 89
 def fine_tune_mvp_(
     self                    : Encoder,
     eval_pre                : bool  = True,
@@ -4153,7 +4165,7 @@ def fine_tune_mvp_(
 
 Encoder.fine_tune_mvp_ = fine_tune_mvp_ 
 
-# %% ../nbs/encoder.ipynb 89
+# %% ../nbs/encoder.ipynb 91
 def configure_optimizer_moirai(
     self                : Encoder, 
     dl_train            : DataLoader,
@@ -4253,7 +4265,7 @@ def configure_optimizer_moirai(
     self.mssg.level -= 1
 Encoder.configure_optimizer_moirai = configure_optimizer_moirai
 
-# %% ../nbs/encoder.ipynb 90
+# %% ../nbs/encoder.ipynb 92
 def get_enc_embs_moirai_(# Obtain the embeddings
     self            : Encoder,
     enc_input       : List [ List [ List [ float ] ] ],
@@ -4275,7 +4287,7 @@ def get_enc_embs_moirai_(# Obtain the embeddings
 
 Encoder.get_enc_embs_moirai_ = get_enc_embs_moirai_
 
-# %% ../nbs/encoder.ipynb 91
+# %% ../nbs/encoder.ipynb 93
 def get_dist_moirai_(# "Normal" execution
     self            : Encoder,
     enc_input       : List [ List [ List [ float ] ] ],
@@ -4294,7 +4306,7 @@ def get_dist_moirai_(# "Normal" execution
 
 Encoder.get_dist_moirai_ = get_dist_moirai_
 
-# %% ../nbs/encoder.ipynb 92
+# %% ../nbs/encoder.ipynb 94
 def fine_tune_moirai_eval_step_(
     self        : Encoder, 
     enc_input   : List [ List [ List [ float ] ] ],
@@ -4318,7 +4330,7 @@ def fine_tune_moirai_eval_step_(
         
 Encoder.fine_tune_moirai_eval_step_ = fine_tune_moirai_eval_step_
 
-# %% ../nbs/encoder.ipynb 93
+# %% ../nbs/encoder.ipynb 95
 def fine_tune_moirai_eval_(
     self    : Encoder,
     dl_eval,
@@ -4348,7 +4360,7 @@ def fine_tune_moirai_eval_(
 
 Encoder.fine_tune_moirai_eval_ = fine_tune_moirai_eval_
 
-# %% ../nbs/encoder.ipynb 94
+# %% ../nbs/encoder.ipynb 96
 def fine_tune_moirai_train_loop_step_(
     self        : Encoder,
     enc_input   : List[ List [ List [ float ] ] ],
@@ -4363,7 +4375,7 @@ def fine_tune_moirai_train_loop_step_(
     loss = loss_func(pred = distr,**args)
     return loss 
 
-# %% ../nbs/encoder.ipynb 95
+# %% ../nbs/encoder.ipynb 97
 def fine_tune_moirai_train_(
     self                : Encoder,
     dl_train            : DataLoader
@@ -4398,7 +4410,7 @@ def fine_tune_moirai_train_(
     self.mssg.level -= 1
 Encoder.fine_tune_moirai_train_ = fine_tune_moirai_train_
 
-# %% ../nbs/encoder.ipynb 96
+# %% ../nbs/encoder.ipynb 98
 def fine_tune_moirai_single_(
     self            : Encoder,
     eval_pre        : bool  = False,
@@ -4483,7 +4495,7 @@ def fine_tune_moirai_single_(
     return losses, eval_results_pre, eval_results_post, t_shot, t_eval_1, t_eval_2, self.model
 Encoder.fine_tune_moirai_single_ = fine_tune_moirai_single_
 
-# %% ../nbs/encoder.ipynb 97
+# %% ../nbs/encoder.ipynb 99
 def fine_tune_moirai_(
     self      : Encoder, 
     eval_pre  : bool = False, 
@@ -4559,7 +4571,7 @@ def fine_tune_moirai_(
 
 Encoder.fine_tune_moirai_ = fine_tune_moirai_
 
-# %% ../nbs/encoder.ipynb 100
+# %% ../nbs/encoder.ipynb 102
 def fine_tune(
     # Optional parameters
     ## Encoder Input
