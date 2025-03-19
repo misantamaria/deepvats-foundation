@@ -1440,8 +1440,14 @@ class WindowedDataset:
                 rws.append(window_size)
                 #print(f"Append {window_size}")
             else:
-                window_size = rws[nb]
-                nb += 1
+                try:
+                    window_size = rws[nb]
+                    nb += 1
+                except:
+                    window_size = np.random.choice(self.window_sizes)
+                    rws.append(window_size)
+                    nb += 1
+                    
             if return_ids: batch_indices = []
             while bs < self.batch_size and available >= window_size:
                 window = self.dataset[current_idx : current_idx + window_size]

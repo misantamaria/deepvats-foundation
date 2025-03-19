@@ -2773,7 +2773,7 @@ def get_mask_tsai(
     # Go! 
     mssg.print("Using MVP masking generation style")
     o = torch.zeros(batch.shape[0], batch.shape[2])
-    mssg.print(f"o ~ {o.shape} | stateful = {mask_stateful} | sync = {mask_sync} | r = {window_mask_percent}")
+    mssg.print(f"o ~ {o.shape} | stateful = {mask_stateful} | sync = {mask_sync} | r = {r}")
     if mask_future:
         mask = create_future_mask(
             o       = o, 
@@ -2787,7 +2787,7 @@ def get_mask_tsai(
             stateful= mask_stateful,
             sync    = mask_sync
         )[0,:,:].int() # As there is only 1 variable/variables are flattened, an extra dim is created by the masking function
-    mssg.print(f"Before shape adjustment | batch ~ {batch.shape} | batch_masks ~ {bms.shape} | mask ~ {mask.shape}")
+    mssg.print(f"Before shape adjustment | batch ~ {batch.shape} | batch_masks ~ {batch_masks.shape} | mask ~ {mask.shape}")
     mssg.final()
     # Restore mssg
     mssg.function = func 
