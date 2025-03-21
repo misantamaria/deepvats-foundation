@@ -1547,7 +1547,7 @@ shinyServer(function(input, output, session) {
 
     observe({
         log_print("Observe event | Input fine tune | Play fine tune ... Waiting ...", debug_group = 'tmi')
-        req(play_fine_tune(), input$fine_tune, enc(), input$ft_df)
+        req(play_fine_tune(), input$fine_tune, enc(), input$ft_df, ft_loss$selected)
         log_print("Observe event | Input fine tune | Play fine tune", debug_group = 'button')
         df <- NULL
         if (
@@ -1570,6 +1570,14 @@ shinyServer(function(input, output, session) {
 
         dataset_logged_by <- enc_ar()$logged_by()
 
+        # Select loss function
+        loss_func <- torch$nn$MSELoss()
+        switch( ft_loss$selected,
+            mse = {loss_func <- torch$nn$MSELoss()},
+            dtw = {tsmetrics$SoftDTWLossPyTorch}
+        )
+
+        # Common args definition
         fine_tune_kwargs <- list(
             X                               = df,
             enc_learn                       = enc(),
@@ -1626,7 +1634,7 @@ shinyServer(function(input, output, session) {
             ),
             metrics_args        = c(list(squared = FALSE), list(squared = TRUE), list(), list()),
             metrics_names       = c("mse","rmse", "mae", "smape"),
-            criterion           = torch$nn$MSELoss(),
+            criterion           = loss_func,
             mix_windows         = TRUE,
             register_errors     = FALSE, #TRUE,
             save_best_or_last   = TRUE,
