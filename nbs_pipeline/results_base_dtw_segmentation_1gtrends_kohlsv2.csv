@@ -1,0 +1,1315 @@
+model_size,n_epochs,dataset_percent,masked_percent,n_windows,time,first_train_loss,first_mse,first_rmse,first_mae,first_smape,last_train_loss,last_mse,last_rmse,last_mae,last_smape,windows,best_epochs,train_losses,eval_pre,eval_post,full_result,first_eval_loss,last_eval_loss
+small,20,0.15,0.25,1,49.06394577026367,0.04802770001697354,0.07859110959300648,0.0062959575776010265,0.04540647175316968,[0.14080101161169356],0.0038220759961404838,0.07466575151906163,0.005697071636247321,0.0458652303084608,0.1416293093574837,[12],[17],"[0.04802770001697354, 0.004199100570986047, 0.004257837877958082, 0.004146207240410149, 0.004166573722613975, 0.004033303455798887, 0.004370172537164763, 0.004219420428853482, 0.004446123915840872, 0.0040954567230073735, 0.004066295761731453, 0.003797505851252936, 0.004051909483678173, 0.004166796032222919, 0.0038512000683113, 0.0036833047852269374, 0.003879015945130959, 0.004129653760173824, 0.0036218457462382503, 0.0036678787364508025, 0.0038220759961404838]","{'loss': [0.04802770001697354], 'mse': [0.07859110959300648], 'rmse': [0.0062959575776010265], 'mae': [0.04540647175316968], 'smape': [0.14080101161169356]}","{'loss': [0.04346786496171262], 'mse': [0.07466575151906163], 'rmse': [0.005697071636247321], 'mae': [0.0458652303084608], 'smape': [0.1416293093574837]}","([[0.04802770001697354, 0.004199100570986047, 0.004257837877958082, 0.004146207240410149, 0.004166573722613975, 0.004033303455798887, 0.004370172537164763, 0.004219420428853482, 0.004446123915840872, 0.0040954567230073735, 0.004066295761731453, 0.003797505851252936, 0.004051909483678173, 0.004166796032222919, 0.0038512000683113, 0.0036833047852269374, 0.003879015945130959, 0.004129653760173824, 0.0036218457462382503, 0.0036678787364508025, 0.0038220759961404838]], {'loss': [0.04802770001697354], 'mse': [0.07859110959300648], 'rmse': [0.0062959575776010265], 'mae': [0.04540647175316968], 'smape': [0.14080101161169356]}, {'loss': [0.04346786496171262], 'mse': [0.07466575151906163], 'rmse': [0.005697071636247321], 'mae': [0.0458652303084608], 'smape': [0.1416293093574837]}, [49.06394577026367], 49.06394577026367, [9.086952924728394, 5.995895862579346], 15.08284878730774, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [17], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.04802770001697354,0.04346786496171262
+small,20,0.15,0.25,5,46.56700015068054,0.048157972953049466,0.07871556178504004,0.006313183802612313,0.0455544899440994,[0.1415616096165383],0.0038220759961404838,0.07466575151906163,0.005697071636247321,0.0458652303084608,0.1416293093574837,[12],[17],"[0.048157972953049466, 0.004199100570986047, 0.004257837877958082, 0.004146207240410149, 0.004166573722613975, 0.004033303455798887, 0.004370172537164763, 0.004219420428853482, 0.004446123915840872, 0.0040954567230073735, 0.004066295761731453, 0.003797505851252936, 0.004051909483678173, 0.004166796032222919, 0.0038512000683113, 0.0036833047852269374, 0.003879015945130959, 0.004129653760173824, 0.0036218457462382503, 0.0036678787364508025, 0.0038220759961404838]","{'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}","{'loss': [0.04346786496171262], 'mse': [0.07466575151906163], 'rmse': [0.005697071636247321], 'mae': [0.0458652303084608], 'smape': [0.1416293093574837]}","([[0.048157972953049466, 0.004199100570986047, 0.004257837877958082, 0.004146207240410149, 0.004166573722613975, 0.004033303455798887, 0.004370172537164763, 0.004219420428853482, 0.004446123915840872, 0.0040954567230073735, 0.004066295761731453, 0.003797505851252936, 0.004051909483678173, 0.004166796032222919, 0.0038512000683113, 0.0036833047852269374, 0.003879015945130959, 0.004129653760173824, 0.0036218457462382503, 0.0036678787364508025, 0.0038220759961404838]], {'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}, {'loss': [0.04346786496171262], 'mse': [0.07466575151906163], 'rmse': [0.005697071636247321], 'mae': [0.0458652303084608], 'smape': [0.1416293093574837]}, [46.56700015068054], 46.56700015068054, [6.012330055236816, 6.003570079803467], 12.015900135040283, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [17], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.048157972953049466,0.04346786496171262
+small,20,0.15,0.5,1,45.55477714538574,0.05124305207573343,0.08143352607267967,0.006720854844787072,0.04716823382441662,[0.14622959714532197],0.0040088459572871216,0.07786320793063316,0.00615062367956235,0.046810684140679265,0.14422130148335288,[12],[15],"[0.05124305207573343, 0.004254043036780786, 0.004906463364022784, 0.004296357175917365, 0.004547499003820121, 0.004196588197373785, 0.004512787047133315, 0.004510051221586764, 0.004467880535230506, 0.004059302489622496, 0.004482996606384404, 0.00406872715393547, 0.004000096312665846, 0.004236577296978794, 0.004221765928377863, 0.003960834445024375, 0.003620451083406806, 0.0044900141801917925, 0.0036389784872881137, 0.003786333058087621, 0.0040088459572871216]","{'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}","{'loss': [0.04689613819937222], 'mse': [0.07786320793063316], 'rmse': [0.00615062367956235], 'mae': [0.046810684140679265], 'smape': [0.14422130148335288]}","([[0.05124305207573343, 0.004254043036780786, 0.004906463364022784, 0.004296357175917365, 0.004547499003820121, 0.004196588197373785, 0.004512787047133315, 0.004510051221586764, 0.004467880535230506, 0.004059302489622496, 0.004482996606384404, 0.00406872715393547, 0.004000096312665846, 0.004236577296978794, 0.004221765928377863, 0.003960834445024375, 0.003620451083406806, 0.0044900141801917925, 0.0036389784872881137, 0.003786333058087621, 0.0040088459572871216]], {'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}, {'loss': [0.04689613819937222], 'mse': [0.07786320793063316], 'rmse': [0.00615062367956235], 'mae': [0.046810684140679265], 'smape': [0.14422130148335288]}, [45.55477714538574], 45.55477714538574, [5.9742591381073, 6.089190721511841], 12.06344985961914, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [15], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05124305207573343,0.04689613819937222
+small,20,0.15,0.5,5,46.735695600509644,0.05124305207573343,0.08143352607267967,0.006720854844787072,0.04716823382441662,[0.14622959714532197],0.0040088459572871216,0.07786320793063316,0.00615062367956235,0.046810684140679265,0.14422130148335288,[12],[15],"[0.05124305207573343, 0.004254043036780786, 0.004906463364022784, 0.004296357175917365, 0.004547499003820121, 0.004196588197373785, 0.004512787047133315, 0.004510051221586764, 0.004467880535230506, 0.004059302489622496, 0.004482996606384404, 0.00406872715393547, 0.004000096312665846, 0.004236577296978794, 0.004221765928377863, 0.003960834445024375, 0.003620451083406806, 0.0044900141801917925, 0.0036389784872881137, 0.003786333058087621, 0.0040088459572871216]","{'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}","{'loss': [0.04689613819937222], 'mse': [0.07786320793063316], 'rmse': [0.00615062367956235], 'mae': [0.046810684140679265], 'smape': [0.14422130148335288]}","([[0.05124305207573343, 0.004254043036780786, 0.004906463364022784, 0.004296357175917365, 0.004547499003820121, 0.004196588197373785, 0.004512787047133315, 0.004510051221586764, 0.004467880535230506, 0.004059302489622496, 0.004482996606384404, 0.00406872715393547, 0.004000096312665846, 0.004236577296978794, 0.004221765928377863, 0.003960834445024375, 0.003620451083406806, 0.0044900141801917925, 0.0036389784872881137, 0.003786333058087621, 0.0040088459572871216]], {'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}, {'loss': [0.04689613819937222], 'mse': [0.07786320793063316], 'rmse': [0.00615062367956235], 'mae': [0.046810684140679265], 'smape': [0.14422130148335288]}, [46.735695600509644], 46.735695600509644, [6.069046497344971, 6.002171993255615], 12.071218490600586, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [15], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05124305207573343,0.04689613819937222
+small,20,0.15,0.75,1,46.0758421421051,0.05642123002326116,0.08562173222201869,0.007394102513853754,0.04899005070020837,[0.15113254417295194],0.0048073949219542556,0.08356863662251413,0.007080707037962451,0.048577207271471495,0.15039885827190141,[12],[18],"[0.05642123002326116, 0.005305006394337397, 0.004622909487807192, 0.004147466053836979, 0.005218387901550159, 0.005074181601230521, 0.005382176619605161, 0.005257589138636831, 0.005255419862805866, 0.004733777117507998, 0.005607238235825207, 0.004615200581611134, 0.004508282530878205, 0.004435731687408406, 0.004852534628298599, 0.004550723657303024, 0.004281769011868164, 0.005276766445604153, 0.004811812294065021, 0.003960045760322828, 0.0048073949219542556]","{'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}","{'loss': [0.05399274890078232], 'mse': [0.08356863662251413], 'rmse': [0.007080707037962451], 'mae': [0.048577207271471495], 'smape': [0.15039885827190141]}","([[0.05642123002326116, 0.005305006394337397, 0.004622909487807192, 0.004147466053836979, 0.005218387901550159, 0.005074181601230521, 0.005382176619605161, 0.005257589138636831, 0.005255419862805866, 0.004733777117507998, 0.005607238235825207, 0.004615200581611134, 0.004508282530878205, 0.004435731687408406, 0.004852534628298599, 0.004550723657303024, 0.004281769011868164, 0.005276766445604153, 0.004811812294065021, 0.003960045760322828, 0.0048073949219542556]], {'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}, {'loss': [0.05399274890078232], 'mse': [0.08356863662251413], 'rmse': [0.007080707037962451], 'mae': [0.048577207271471495], 'smape': [0.15039885827190141]}, [46.0758421421051], 46.0758421421051, [6.083608627319336, 6.052229881286621], 12.135838508605957, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [18], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05642123002326116,0.05399274890078232
+small,20,0.15,0.75,5,45.85986876487732,0.05642123002326116,0.08562173222201869,0.007394102513853754,0.04899005070020837,[0.15113254417295194],0.0048073949219542556,0.08356863662251413,0.007080707037962451,0.048577207271471495,0.15039885827190141,[12],[18],"[0.05642123002326116, 0.005305006394337397, 0.004622909487807192, 0.004147466053836979, 0.005218387901550159, 0.005074181601230521, 0.005382176619605161, 0.005257589138636831, 0.005255419862805866, 0.004733777117507998, 0.005607238235825207, 0.004615200581611134, 0.004508282530878205, 0.004435731687408406, 0.004852534628298599, 0.004550723657303024, 0.004281769011868164, 0.005276766445604153, 0.004811812294065021, 0.003960045760322828, 0.0048073949219542556]","{'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}","{'loss': [0.05399274890078232], 'mse': [0.08356863662251413], 'rmse': [0.007080707037962451], 'mae': [0.048577207271471495], 'smape': [0.15039885827190141]}","([[0.05642123002326116, 0.005305006394337397, 0.004622909487807192, 0.004147466053836979, 0.005218387901550159, 0.005074181601230521, 0.005382176619605161, 0.005257589138636831, 0.005255419862805866, 0.004733777117507998, 0.005607238235825207, 0.004615200581611134, 0.004508282530878205, 0.004435731687408406, 0.004852534628298599, 0.004550723657303024, 0.004281769011868164, 0.005276766445604153, 0.004811812294065021, 0.003960045760322828, 0.0048073949219542556]], {'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}, {'loss': [0.05399274890078232], 'mse': [0.08356863662251413], 'rmse': [0.007080707037962451], 'mae': [0.048577207271471495], 'smape': [0.15039885827190141]}, [45.85986876487732], 45.85986876487732, [6.024886131286621, 6.002164363861084], 12.027050495147705, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [18], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05642123002326116,0.05399274890078232
+small,20,0.2,0.25,1,57.97102618217468,0.048157972953049466,0.07871556178504004,0.006313183802612313,0.0455544899440994,[0.1415616096165383],0.0025712324830237778,0.07450027854610422,0.005667335248119342,0.04524660410651983,0.14053570497213838,[12],[18],"[0.048157972953049466, 0.00259711699327454, 0.002595258643850684, 0.0027108869515359403, 0.0025161422207020225, 0.0027092733012977987, 0.0028750394412782043, 0.0024854047107510267, 0.002457927056821063, 0.0023715294781140985, 0.002769796649226919, 0.0024030993808992207, 0.0023433796246536075, 0.0025758622912690045, 0.0024870579421985895, 0.0025181471020914612, 0.0023631061951164154, 0.002699860924622044, 0.002341904817149043, 0.0022941197152249516, 0.0025712324830237778]","{'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}","{'loss': [0.04324345568602439], 'mse': [0.07450027854610422], 'rmse': [0.005667335248119342], 'mae': [0.04524660410651983], 'smape': [0.14053570497213838]}","([[0.048157972953049466, 0.00259711699327454, 0.002595258643850684, 0.0027108869515359403, 0.0025161422207020225, 0.0027092733012977987, 0.0028750394412782043, 0.0024854047107510267, 0.002457927056821063, 0.0023715294781140985, 0.002769796649226919, 0.0024030993808992207, 0.0023433796246536075, 0.0025758622912690045, 0.0024870579421985895, 0.0025181471020914612, 0.0023631061951164154, 0.002699860924622044, 0.002341904817149043, 0.0022941197152249516, 0.0025712324830237778]], {'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}, {'loss': [0.04324345568602439], 'mse': [0.07450027854610422], 'rmse': [0.005667335248119342], 'mae': [0.04524660410651983], 'smape': [0.14053570497213838]}, [57.97102618217468], 57.97102618217468, [5.980897665023804, 6.000896215438843], 11.981793880462646, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [18], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.048157972953049466,0.04324345568602439
+small,20,0.2,0.25,5,57.98909306526184,0.048157972953049466,0.07871556178504004,0.006313183802612313,0.0455544899440994,[0.1415616096165383],0.0025712324830237778,0.07450027854610422,0.005667335248119342,0.04524660410651983,0.14053570497213838,[12],[18],"[0.048157972953049466, 0.00259711699327454, 0.002595258643850684, 0.0027108869515359403, 0.0025161422207020225, 0.0027092733012977987, 0.0028750394412782043, 0.0024854047107510267, 0.002457927056821063, 0.0023715294781140985, 0.002769796649226919, 0.0024030993808992207, 0.0023433796246536075, 0.0025758622912690045, 0.0024870579421985895, 0.0025181471020914612, 0.0023631061951164154, 0.002699860924622044, 0.002341904817149043, 0.0022941197152249516, 0.0025712324830237778]","{'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}","{'loss': [0.04324345568602439], 'mse': [0.07450027854610422], 'rmse': [0.005667335248119342], 'mae': [0.04524660410651983], 'smape': [0.14053570497213838]}","([[0.048157972953049466, 0.00259711699327454, 0.002595258643850684, 0.0027108869515359403, 0.0025161422207020225, 0.0027092733012977987, 0.0028750394412782043, 0.0024854047107510267, 0.002457927056821063, 0.0023715294781140985, 0.002769796649226919, 0.0024030993808992207, 0.0023433796246536075, 0.0025758622912690045, 0.0024870579421985895, 0.0025181471020914612, 0.0023631061951164154, 0.002699860924622044, 0.002341904817149043, 0.0022941197152249516, 0.0025712324830237778]], {'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}, {'loss': [0.04324345568602439], 'mse': [0.07450027854610422], 'rmse': [0.005667335248119342], 'mae': [0.04524660410651983], 'smape': [0.14053570497213838]}, [57.98909306526184], 57.98909306526184, [6.2077484130859375, 5.964383125305176], 12.172131538391113, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [18], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.048157972953049466,0.04324345568602439
+small,20,0.2,0.5,1,56.836872816085815,0.05124305207573343,0.08143352607267967,0.006720854844787072,0.04716823382441662,[0.14622959714532197],0.002865472971461713,0.07785986968676123,0.006157393032038181,0.04645253159105778,0.14326416184933824,[12],[18],"[0.05124305207573343, 0.0026208925584796814, 0.002524220891064033, 0.0026379482063930483, 0.002594392345054075, 0.0028602716745808722, 0.003279186267172918, 0.002498483000090346, 0.002840093767736107, 0.002602788002695888, 0.002747573336819187, 0.002436561818467453, 0.0025536133092828096, 0.002396112272981554, 0.0025801977259106933, 0.0027504930389113725, 0.0024513183801900596, 0.002749012678395957, 0.0023975255084224046, 0.0023530363338068127, 0.002865472971461713]","{'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}","{'loss': [0.04695015275501646], 'mse': [0.07785986968676123], 'rmse': [0.006157393032038181], 'mae': [0.04645253159105778], 'smape': [0.14326416184933824]}","([[0.05124305207573343, 0.0026208925584796814, 0.002524220891064033, 0.0026379482063930483, 0.002594392345054075, 0.0028602716745808722, 0.003279186267172918, 0.002498483000090346, 0.002840093767736107, 0.002602788002695888, 0.002747573336819187, 0.002436561818467453, 0.0025536133092828096, 0.002396112272981554, 0.0025801977259106933, 0.0027504930389113725, 0.0024513183801900596, 0.002749012678395957, 0.0023975255084224046, 0.0023530363338068127, 0.002865472971461713]], {'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}, {'loss': [0.04695015275501646], 'mse': [0.07785986968676123], 'rmse': [0.006157393032038181], 'mae': [0.04645253159105778], 'smape': [0.14326416184933824]}, [56.836872816085815], 56.836872816085815, [5.957927942276001, 6.013847589492798], 11.971775531768799, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [18], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05124305207573343,0.04695015275501646
+small,20,0.2,0.5,5,56.94798159599304,0.05124305207573343,0.08143352607267967,0.006720854844787072,0.04716823382441662,[0.14622959714532197],0.002865472971461713,0.07785986968676123,0.006157393032038181,0.04645253159105778,0.14326416184933824,[12],[18],"[0.05124305207573343, 0.0026208925584796814, 0.002524220891064033, 0.0026379482063930483, 0.002594392345054075, 0.0028602716745808722, 0.003279186267172918, 0.002498483000090346, 0.002840093767736107, 0.002602788002695888, 0.002747573336819187, 0.002436561818467453, 0.0025536133092828096, 0.002396112272981554, 0.0025801977259106933, 0.0027504930389113725, 0.0024513183801900596, 0.002749012678395957, 0.0023975255084224046, 0.0023530363338068127, 0.002865472971461713]","{'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}","{'loss': [0.04695015275501646], 'mse': [0.07785986968676123], 'rmse': [0.006157393032038181], 'mae': [0.04645253159105778], 'smape': [0.14326416184933824]}","([[0.05124305207573343, 0.0026208925584796814, 0.002524220891064033, 0.0026379482063930483, 0.002594392345054075, 0.0028602716745808722, 0.003279186267172918, 0.002498483000090346, 0.002840093767736107, 0.002602788002695888, 0.002747573336819187, 0.002436561818467453, 0.0025536133092828096, 0.002396112272981554, 0.0025801977259106933, 0.0027504930389113725, 0.0024513183801900596, 0.002749012678395957, 0.0023975255084224046, 0.0023530363338068127, 0.002865472971461713]], {'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}, {'loss': [0.04695015275501646], 'mse': [0.07785986968676123], 'rmse': [0.006157393032038181], 'mae': [0.04645253159105778], 'smape': [0.14326416184933824]}, [56.94798159599304], 56.94798159599304, [6.014760732650757, 6.029094219207764], 12.04385495185852, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [18], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05124305207573343,0.04695015275501646
+small,20,0.2,0.75,1,57.909809589385986,0.05642123002326116,0.08562173222201869,0.007394102513853754,0.04899005070020837,[0.15113254417295194],0.0034155415603891017,0.08331208971759003,0.007025458742315957,0.048260918764536045,0.1496044154535178,[12],[15],"[0.05642123002326116, 0.003327726206043735, 0.002836374205071479, 0.002820958330994472, 0.0027754007431212814, 0.0036047601432073863, 0.0034675973176490514, 0.0026961572584696114, 0.0029864732932765037, 0.0029886112781241534, 0.003497988119488582, 0.0030394131899811327, 0.0035405422968324274, 0.0029060295259114356, 0.002995328640099615, 0.0027766145998612047, 0.002684123336803168, 0.0031252191110979766, 0.0030272844363935293, 0.002747756411554292, 0.0034155415603891017]","{'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}","{'loss': [0.05358290861477144], 'mse': [0.08331208971759003], 'rmse': [0.007025458742315957], 'mae': [0.048260918764536045], 'smape': [0.1496044154535178]}","([[0.05642123002326116, 0.003327726206043735, 0.002836374205071479, 0.002820958330994472, 0.0027754007431212814, 0.0036047601432073863, 0.0034675973176490514, 0.0026961572584696114, 0.0029864732932765037, 0.0029886112781241534, 0.003497988119488582, 0.0030394131899811327, 0.0035405422968324274, 0.0029060295259114356, 0.002995328640099615, 0.0027766145998612047, 0.002684123336803168, 0.0031252191110979766, 0.0030272844363935293, 0.002747756411554292, 0.0034155415603891017]], {'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}, {'loss': [0.05358290861477144], 'mse': [0.08331208971759003], 'rmse': [0.007025458742315957], 'mae': [0.048260918764536045], 'smape': [0.1496044154535178]}, [57.909809589385986], 57.909809589385986, [6.003430128097534, 5.998333692550659], 12.001763820648193, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [15], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05642123002326116,0.05358290861477144
+small,20,0.2,0.75,5,57.17955946922302,0.05642123002326116,0.08562173222201869,0.007394102513853754,0.04899005070020837,[0.15113254417295194],0.0034155415603891017,0.08331208971759003,0.007025458742315957,0.048260918764536045,0.1496044154535178,[12],[15],"[0.05642123002326116, 0.003327726206043735, 0.002836374205071479, 0.002820958330994472, 0.0027754007431212814, 0.0036047601432073863, 0.0034675973176490514, 0.0026961572584696114, 0.0029864732932765037, 0.0029886112781241534, 0.003497988119488582, 0.0030394131899811327, 0.0035405422968324274, 0.0029060295259114356, 0.002995328640099615, 0.0027766145998612047, 0.002684123336803168, 0.0031252191110979766, 0.0030272844363935293, 0.002747756411554292, 0.0034155415603891017]","{'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}","{'loss': [0.05358290861477144], 'mse': [0.08331208971759003], 'rmse': [0.007025458742315957], 'mae': [0.048260918764536045], 'smape': [0.1496044154535178]}","([[0.05642123002326116, 0.003327726206043735, 0.002836374205071479, 0.002820958330994472, 0.0027754007431212814, 0.0036047601432073863, 0.0034675973176490514, 0.0026961572584696114, 0.0029864732932765037, 0.0029886112781241534, 0.003497988119488582, 0.0030394131899811327, 0.0035405422968324274, 0.0029060295259114356, 0.002995328640099615, 0.0027766145998612047, 0.002684123336803168, 0.0031252191110979766, 0.0030272844363935293, 0.002747756411554292, 0.0034155415603891017]], {'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}, {'loss': [0.05358290861477144], 'mse': [0.08331208971759003], 'rmse': [0.007025458742315957], 'mae': [0.048260918764536045], 'smape': [0.1496044154535178]}, [57.17955946922302], 57.17955946922302, [6.005722522735596, 5.971335172653198], 11.977057695388794, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [15], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05642123002326116,0.05358290861477144
+small,20,0.3,0.25,1,90.19184494018555,0.048157972953049466,0.07871556178504004,0.006313183802612313,0.0455544899440994,[0.1415616096165383],0.004005064496595878,0.07449917795681464,0.005676521267568586,0.04570345482057776,0.1419362855506181,[12],[17],"[0.048157972953049466, 0.0047226330534613226, 0.004328991919464897, 0.004522781120613217, 0.004262239057425177, 0.0042146279229200445, 0.004084961201442638, 0.004161658271186752, 0.004020248852611985, 0.004347170986875426, 0.004142582005442819, 0.004499180631682975, 0.0038693476490152534, 0.004202039526717272, 0.003902538461261429, 0.004029064864880638, 0.004249272522429237, 0.003942062765418086, 0.0038630506169283763, 0.003978071519668447, 0.004005064496595878]","{'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}","{'loss': [0.0433082060480956], 'mse': [0.07449917795681464], 'rmse': [0.005676521267568586], 'mae': [0.04570345482057776], 'smape': [0.1419362855506181]}","([[0.048157972953049466, 0.0047226330534613226, 0.004328991919464897, 0.004522781120613217, 0.004262239057425177, 0.0042146279229200445, 0.004084961201442638, 0.004161658271186752, 0.004020248852611985, 0.004347170986875426, 0.004142582005442819, 0.004499180631682975, 0.0038693476490152534, 0.004202039526717272, 0.003902538461261429, 0.004029064864880638, 0.004249272522429237, 0.003942062765418086, 0.0038630506169283763, 0.003978071519668447, 0.004005064496595878]], {'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}, {'loss': [0.0433082060480956], 'mse': [0.07449917795681464], 'rmse': [0.005676521267568586], 'mae': [0.04570345482057776], 'smape': [0.1419362855506181]}, [90.19184494018555], 90.19184494018555, [5.97833514213562, 5.965551853179932], 11.943886995315552, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [17], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.048157972953049466,0.0433082060480956
+small,20,0.3,0.25,5,90.410897731781,0.048157972953049466,0.07871556178504004,0.006313183802612313,0.0455544899440994,[0.1415616096165383],0.004005064496595878,0.07449917795681464,0.005676521267568586,0.04570345482057776,0.1419362855506181,[12],[17],"[0.048157972953049466, 0.0047226330534613226, 0.004328991919464897, 0.004522781120613217, 0.004262239057425177, 0.0042146279229200445, 0.004084961201442638, 0.004161658271186752, 0.004020248852611985, 0.004347170986875426, 0.004142582005442819, 0.004499180631682975, 0.0038693476490152534, 0.004202039526717272, 0.003902538461261429, 0.004029064864880638, 0.004249272522429237, 0.003942062765418086, 0.0038630506169283763, 0.003978071519668447, 0.004005064496595878]","{'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}","{'loss': [0.0433082060480956], 'mse': [0.07449917795681464], 'rmse': [0.005676521267568586], 'mae': [0.04570345482057776], 'smape': [0.1419362855506181]}","([[0.048157972953049466, 0.0047226330534613226, 0.004328991919464897, 0.004522781120613217, 0.004262239057425177, 0.0042146279229200445, 0.004084961201442638, 0.004161658271186752, 0.004020248852611985, 0.004347170986875426, 0.004142582005442819, 0.004499180631682975, 0.0038693476490152534, 0.004202039526717272, 0.003902538461261429, 0.004029064864880638, 0.004249272522429237, 0.003942062765418086, 0.0038630506169283763, 0.003978071519668447, 0.004005064496595878]], {'loss': [0.048157972953049466], 'mse': [0.07871556178504004], 'rmse': [0.006313183802612313], 'mae': [0.0455544899440994], 'smape': [0.1415616096165383]}, {'loss': [0.0433082060480956], 'mse': [0.07449917795681464], 'rmse': [0.005676521267568586], 'mae': [0.04570345482057776], 'smape': [0.1419362855506181]}, [90.410897731781], 90.410897731781, [5.993721008300781, 6.022262811660767], 12.015983819961548, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [17], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.048157972953049466,0.0433082060480956
+small,20,0.3,0.5,1,91.03589797019958,0.05124305207573343,0.08143352607267967,0.006720854844787072,0.04716823382441662,[0.14622959714532197],0.004289307540602749,0.07805716323560258,0.0061890889628801425,0.04708514370270504,0.1458088490909118,[12],[16],"[0.05124305207573343, 0.005014599344576709, 0.004419064644025639, 0.0047948863211786374, 0.0043363022996345535, 0.004302765155443922, 0.004391849084640853, 0.0042201898868370336, 0.004257574688381283, 0.004810646307305433, 0.004307207193050999, 0.00468388722583768, 0.0041807818597590085, 0.004550528352410765, 0.004155581231316319, 0.004198648312012665, 0.004739887266623555, 0.0038664131789118983, 0.004028821458632592, 0.004349761591583956, 0.004289307540602749]","{'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}","{'loss': [0.047185648887534626], 'mse': [0.07805716323560258], 'rmse': [0.0061890889628801425], 'mae': [0.04708514370270504], 'smape': [0.1458088490909118]}","([[0.05124305207573343, 0.005014599344576709, 0.004419064644025639, 0.0047948863211786374, 0.0043363022996345535, 0.004302765155443922, 0.004391849084640853, 0.0042201898868370336, 0.004257574688381283, 0.004810646307305433, 0.004307207193050999, 0.00468388722583768, 0.0041807818597590085, 0.004550528352410765, 0.004155581231316319, 0.004198648312012665, 0.004739887266623555, 0.0038664131789118983, 0.004028821458632592, 0.004349761591583956, 0.004289307540602749]], {'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}, {'loss': [0.047185648887534626], 'mse': [0.07805716323560258], 'rmse': [0.0061890889628801425], 'mae': [0.04708514370270504], 'smape': [0.1458088490909118]}, [91.03589797019958], 91.03589797019958, [6.0245361328125, 5.9938905239105225], 12.018426656723022, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [16], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05124305207573343,0.047185648887534626
+small,20,0.3,0.5,5,89.9459137916565,0.05124305207573343,0.08143352607267967,0.006720854844787072,0.04716823382441662,[0.14622959714532197],0.004289307540602749,0.07805716323560258,0.0061890889628801425,0.04708514370270504,0.1458088490909118,[12],[16],"[0.05124305207573343, 0.005014599344576709, 0.004419064644025639, 0.0047948863211786374, 0.0043363022996345535, 0.004302765155443922, 0.004391849084640853, 0.0042201898868370336, 0.004257574688381283, 0.004810646307305433, 0.004307207193050999, 0.00468388722583768, 0.0041807818597590085, 0.004550528352410765, 0.004155581231316319, 0.004198648312012665, 0.004739887266623555, 0.0038664131789118983, 0.004028821458632592, 0.004349761591583956, 0.004289307540602749]","{'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}","{'loss': [0.047185648887534626], 'mse': [0.07805716323560258], 'rmse': [0.0061890889628801425], 'mae': [0.04708514370270504], 'smape': [0.1458088490909118]}","([[0.05124305207573343, 0.005014599344576709, 0.004419064644025639, 0.0047948863211786374, 0.0043363022996345535, 0.004302765155443922, 0.004391849084640853, 0.0042201898868370336, 0.004257574688381283, 0.004810646307305433, 0.004307207193050999, 0.00468388722583768, 0.0041807818597590085, 0.004550528352410765, 0.004155581231316319, 0.004198648312012665, 0.004739887266623555, 0.0038664131789118983, 0.004028821458632592, 0.004349761591583956, 0.004289307540602749]], {'loss': [0.05124305207573343], 'mse': [0.08143352607267967], 'rmse': [0.006720854844787072], 'mae': [0.04716823382441662], 'smape': [0.14622959714532197]}, {'loss': [0.047185648887534626], 'mse': [0.07805716323560258], 'rmse': [0.0061890889628801425], 'mae': [0.04708514370270504], 'smape': [0.1458088490909118]}, [89.9459137916565], 89.9459137916565, [5.972670078277588, 5.962583303451538], 11.935253381729126, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [16], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05124305207573343,0.047185648887534626
+small,20,0.3,0.75,1,88.456711769104,0.05642123002326116,0.08562173222201869,0.007394102513853754,0.04899005070020837,[0.15113254417295194],0.005108585755806416,0.08339125420602028,0.007027738603037428,0.04823069331382424,0.14958276270836363,[12],[6],"[0.05642123002326116, 0.005793701013317332, 0.004603637178661302, 0.005012646164686885, 0.005334900175512303, 0.005068494680017466, 0.004945183678501053, 0.004372236577182775, 0.004986021976947086, 0.005980388192256214, 0.004523434785369318, 0.00540338559585507, 0.004713043537776684, 0.004931631221552379, 0.004507970810664119, 0.004853237933275523, 0.005076022309367545, 0.004631939300452359, 0.00459302877789014, 0.004524297772150021, 0.005108585755806416]","{'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}","{'loss': [0.053615151133271866], 'mse': [0.08339125420602028], 'rmse': [0.007027738603037428], 'mae': [0.04823069331382424], 'smape': [0.14958276270836363]}","([[0.05642123002326116, 0.005793701013317332, 0.004603637178661302, 0.005012646164686885, 0.005334900175512303, 0.005068494680017466, 0.004945183678501053, 0.004372236577182775, 0.004986021976947086, 0.005980388192256214, 0.004523434785369318, 0.00540338559585507, 0.004713043537776684, 0.004931631221552379, 0.004507970810664119, 0.004853237933275523, 0.005076022309367545, 0.004631939300452359, 0.00459302877789014, 0.004524297772150021, 0.005108585755806416]], {'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}, {'loss': [0.053615151133271866], 'mse': [0.08339125420602028], 'rmse': [0.007027738603037428], 'mae': [0.04823069331382424], 'smape': [0.14958276270836363]}, [88.456711769104], 88.456711769104, [5.946329593658447, 6.009666681289673], 11.95599627494812, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [6], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05642123002326116,0.053615151133271866
+small,20,0.3,0.75,5,88.87314176559448,0.05642123002326116,0.08562173222201869,0.007394102513853754,0.04899005070020837,[0.15113254417295194],0.005108585755806416,0.08339125420602028,0.007027738603037428,0.04823069331382424,0.14958276270836363,[12],[6],"[0.05642123002326116, 0.005793701013317332, 0.004603637178661302, 0.005012646164686885, 0.005334900175512303, 0.005068494680017466, 0.004945183678501053, 0.004372236577182775, 0.004986021976947086, 0.005980388192256214, 0.004523434785369318, 0.00540338559585507, 0.004713043537776684, 0.004931631221552379, 0.004507970810664119, 0.004853237933275523, 0.005076022309367545, 0.004631939300452359, 0.00459302877789014, 0.004524297772150021, 0.005108585755806416]","{'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}","{'loss': [0.053615151133271866], 'mse': [0.08339125420602028], 'rmse': [0.007027738603037428], 'mae': [0.04823069331382424], 'smape': [0.14958276270836363]}","([[0.05642123002326116, 0.005793701013317332, 0.004603637178661302, 0.005012646164686885, 0.005334900175512303, 0.005068494680017466, 0.004945183678501053, 0.004372236577182775, 0.004986021976947086, 0.005980388192256214, 0.004523434785369318, 0.00540338559585507, 0.004713043537776684, 0.004931631221552379, 0.004507970810664119, 0.004853237933275523, 0.005076022309367545, 0.004631939300452359, 0.00459302877789014, 0.004524297772150021, 0.005108585755806416]], {'loss': [0.05642123002326116], 'mse': [0.08562173222201869], 'rmse': [0.007394102513853754], 'mae': [0.04899005070020837], 'smape': [0.15113254417295194]}, {'loss': [0.053615151133271866], 'mse': [0.08339125420602028], 'rmse': [0.007027738603037428], 'mae': [0.04823069331382424], 'smape': [0.14958276270836363]}, [88.87314176559448], 88.87314176559448, [6.340296983718872, 6.091976881027222], 12.432273864746094, MOMENTPipeline(
+  (normalizer): RevIN()
+  (tokenizer): Patching()
+  (patch_embedding): PatchEmbedding(
+    (value_embedding): Linear(in_features=8, out_features=768, bias=False)
+    (position_embedding): PositionalEmbedding()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): T5Stack(
+    (embed_tokens): Embedding(32128, 768)
+    (block): ModuleList(
+      (0): T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+              (relative_attention_bias): Embedding(32, 12)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1-11): 11 x T5Block(
+        (layer): ModuleList(
+          (0): T5LayerSelfAttention(
+            (SelfAttention): T5Attention(
+              (q): Linear(in_features=768, out_features=768, bias=False)
+              (k): Linear(in_features=768, out_features=768, bias=False)
+              (v): Linear(in_features=768, out_features=768, bias=False)
+              (o): Linear(in_features=768, out_features=768, bias=False)
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): T5LayerFF(
+            (DenseReluDense): T5DenseGatedActDense(
+              (wi_0): Linear(in_features=768, out_features=2048, bias=False)
+              (wi_1): Linear(in_features=768, out_features=2048, bias=False)
+              (wo): Linear(in_features=2048, out_features=768, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): T5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): T5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (head): PretrainHead(
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear): Linear(in_features=768, out_features=8, bias=True)
+  )
+), [12], [6], Empty DataFrame
+Columns: [window, error]
+Index: [])",0.05642123002326116,0.053615151133271866
