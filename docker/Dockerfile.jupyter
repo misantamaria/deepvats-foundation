@@ -88,11 +88,13 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # Install additional tools   #
 ##############################
 USER root
+#--- por algún problema está fallando tslearn. Arreglar por qué no lo pilla en environment.yml
 RUN pip install aeon \
-    && conda run -n ${CONDA_ENV} conda install -y -c conda-forge ruptures
+    && conda run -n ${CONDA_ENV} conda install -y -c conda-forge ruptures tslearn
+#RUN pip install tslearn
 USER ${USER}
 RUN conda run -n ${CONDA_ENV} conda list momentfm && sleep 3
-
+RUN pip install tslearn
 # Copy project files into the work directory
 COPY --chown=$UID:$GID ./ $HOME/work
 #--- Ensure data dir
@@ -104,13 +106,16 @@ RUN mkdir $HOME/data
 ARG JUPYTER_TOKEN
 ENV JUPYTER_TOKEN=${JUPYTER_TOKEN}
 
+
 #--- DEBUG
 RUN conda list -n env moment && sleep 3
+
+
 CMD [\
     "sh", "-c", \
     "xvfb-run -a jupyter lab \
     --no-browser \
-    --ip 0.0.0.0 \
+    --ip 0.0.0.0 \  
     --ContentsManager.allow_hidden=True \
     --NotebookApp.token=$JUPYTER_TOKEN"\
     ]

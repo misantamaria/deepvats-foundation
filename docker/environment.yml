@@ -318,4 +318,4 @@ dependencies:
   - xorg-libxt=1.3.0=hd590300_0
   - xorg-renderproto=0.11.1=h7f98852_1002
   - zeromq=4.3.5=h59595ed_0
-  
+  - tslearn
