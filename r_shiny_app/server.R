@@ -1547,7 +1547,7 @@ shinyServer(function(input, output, session) {
 
     observe({
         log_print("Observe event | Input fine tune | Play fine tune ... Waiting ...", debug_group = 'tmi')
-        req(play_fine_tune(), input$fine_tune, enc(), input$ft_df, ft_loss$selected)
+        req(play_fine_tune(), input$fine_tune, enc(), input$ft_df, input$ft_loss$selected)
         log_print("Observe event | Input fine tune | Play fine tune", debug_group = 'button')
         df <- NULL
         if (
@@ -1572,7 +1572,7 @@ shinyServer(function(input, output, session) {
 
         # Select loss function
         loss_func <- torch$nn$MSELoss()
-        switch( ft_loss$selected,
+        switch( input$ft_loss$selected,
             mse = {loss_func <- torch$nn$MSELoss()},
             dtw = {tsmetrics$SoftDTWLossPyTorch}
         )
