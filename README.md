@@ -1,4 +1,8 @@
+Previous note:  Please take into account this is a cleaned version for the researh paper <doi>. To check the current state of the application, take a look into (DeepVATS)[https://github.com/vrodriguezf/deepvats].
+
 # Deep VATS
+
+
 > Deep learning Visual Analytics for Time Series
 
 The main objective of DeepVATS is to combine cutting-edge research in neural networks and visual analytics of time series. It is inspired by projects such as [Timecluster](https://link.springer.com/article/10.1007/s00371-019-01673-y) and the [TensorFlow's Embeddings Projector](https://projector.tensorflow.org/), in which tools are created to interpret the content of neural networks trained with visual and textual data. This allows to verify how the internal content of a neural network reveals high-level abstraction patterns present in the data (for example, semantic similarity between words in a language model).
