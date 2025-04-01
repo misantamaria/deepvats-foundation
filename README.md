@@ -1,4 +1,5 @@
-Previous note:  Please take into account this is a cleaned version for the researh paper <doi>. To check the current state of the application, take a look into (DeepVATS)[https://github.com/vrodriguezf/deepvats].
+**Previous note**:  
+Please take into account this is a cleaned version for the researh paper <doi>. To check the current state of the application, take a look into [DeepVATS](https://github.com/vrodriguezf/deepvats).
 
 # Deep VATS
 
