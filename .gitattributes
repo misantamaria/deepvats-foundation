@@ -1,1 +1,5 @@
 *.ipynb merge=nbdev-merge
+nbs_pipeline/paper_artifacts/111654371551867232 filter=lfs diff=lfs merge=lfs -text
+nbs_pipeline/paper_artifacts/-2451651993329898994 filter=lfs diff=lfs merge=lfs -text
+nbs_pipeline/paper_artifacts/-2593986256096576543 filter=lfs diff=lfs merge=lfs -text
+nbs_pipeline/paper_artifacts/-7601696885029958941 filter=lfs diff=lfs merge=lfs -text
