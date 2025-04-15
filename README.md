@@ -1,6 +1,9 @@
-**Previous note**:  
-Please take into account this is a cleaned version for the researh paper <doi>. To check the current state of the application, take a look into [DeepVATS](https://github.com/vrodriguezf/deepvats).
-Please check the wiki for complementary info!
+# Decoding Latent Spaces: Assessing the Interpretability of Time Series Foundation Models for Visual Analytics
+
+This is a fork with a cleaned version of DeepVATS for the researh paper ```Decoding Latent Spaces: Assessing the Interpretability of Time Series Foundation Models for Visual Analytics```. To check the current state of the application, take a look into [DeepVATS](https://github.com/vrodriguezf/deepvats).
+The wiki is being updated for complementary info!
+In the mean time, you may check the ```paper_images_preview``` folder for better resolution (as paper images has really low quality due to compression and no double column possibility at appendices). 
+Thanks for the understanding!
 
 # Deep VATS
 
